@@ -1,18 +1,34 @@
 import React from "react";
 import Button from "./Button";
 
-const secondaryButtons = [
-  "Mark all as complete",
-  "Mark all as incomplete",
-  "Reset to initial",
-  "Remove all Items",
-];
-function ButtonGroup() {
+function ButtonGroup({
+  handleRemoveAllItems,
+  handleResetToInitial,
+  handleMarkAllAsComplete,
+  handleMarkAllAsIncomplete,
+}) {
   return (
     <section className="button-group">
-      {secondaryButtons.map((text) => (
-        <Button type="secondary" key={text} text={text} />
-      ))}
+      <Button
+        onClick={handleMarkAllAsComplete}
+        type="secondary"
+        text={"Mark all as complete"}
+      />
+      <Button
+        onClick={handleMarkAllAsIncomplete}
+        type="secondary"
+        text={"Mark all as incomplete"}
+      />
+      <Button
+        onClick={handleResetToInitial}
+        type="secondary"
+        text={"Reset to initial"}
+      />
+      <Button
+        onClick={handleRemoveAllItems}
+        type="secondary"
+        text={"Remove all Items"}
+      />
     </section>
   );
 }

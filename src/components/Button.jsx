@@ -1,8 +1,9 @@
 import React from "react";
 
-function Button({ type, text }) {
+function Button({ type, text, onClick }) {
   return (
     <button
+      onClick={onClick}
       type="primary"
       className={`btn ${type === "secondary" ? "btn--secondary" : ""}`}
     >
