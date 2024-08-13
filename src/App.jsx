@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundHeading from "./components/BckgHeading";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -7,7 +7,9 @@ import Sidebar from "./components/Sidebar";
 import { InitialItems } from "./lib/constants";
 
 function App() {
-  const [items, setItems] = useState(InitialItems);
+  const [items, setItems] = useState(() => {
+    return JSON.parse(localStorage.getItem("items")) || InitialItems;
+  });
   const handleAddItem = (newItemText) => {
     const constructItem = {
       id: new Date().getTime(),
@@ -48,11 +50,18 @@ function App() {
     setItems(completedItems);
   };
 
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
   return (
     <>
       <BackgroundHeading />
       <main>
-        <Header />
+        <Header
+          packedItems={items.filter((item) => item.checked).length}
+          itemCount={items.length}
+        />
         <ItemList
           handleToggleCheckItem={handleToggleCheckItem}
           handleRemoveItem={handleRemoveItem}

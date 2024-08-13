@@ -1,9 +1,9 @@
 import React from "react";
 
-function Counter() {
+function Counter({ itemCount, packedItems }) {
   return (
     <p>
-      <b>1</b> /3 items packed
+      <b>{packedItems}</b> /{itemCount} items packed
     </p>
   );
 }

@@ -2,11 +2,11 @@ import React from "react";
 import Logo from "./Logo";
 import Counter from "./Counter";
 
-function Header() {
+function Header({ itemCount, packedItems }) {
   return (
     <header>
       <Logo />
-      <Counter />
+      <Counter packedItems={packedItems} itemCount={itemCount} />
     </header>
   );
 }
